@@ -18,18 +18,16 @@ import Image from "next/image";
 import { useState } from "react";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "../../lib/uploadthing";
+import { usePathname, useRouter } from "next/navigation";
+import { updateUser } from "@/lib/actions/user.actions";
 
 const AccountProfile = (props) => {
   const { user, btnTitle } = props;
   const [files, setFiles] = useState([]);
   const startUpload = useUploadThing("media");
-  //   const form = useForm({ resolver: zodResolver() });
-  const {
-    handleSubmit,
-    control,
-    setValue,
-    // formState: { errors },
-  } = useForm();
+  const router = useRouter();
+  const pathname = usePathname();
+
   const onSubmit = async (values) => {
     const blob = values.profile_photo;
     const hasImageChanged = isBase64Image(blob);
@@ -40,7 +38,20 @@ const AccountProfile = (props) => {
       }
     }
 
-    //TODO: Update user profile
+    await updateUser({
+      username: values.username,
+      name: values.name,
+      bio: values.bio,
+      image: values.profile_photo,
+      userId: user.id,
+      path: pathname,
+    });
+
+    if (pathname === "/profile/edit") {
+      router.back();
+    } else {
+      router.push("/");
+    }
   };
 
   const form = useForm({
