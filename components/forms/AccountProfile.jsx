@@ -1,8 +1,5 @@
 "use client";
-import { useForm, Controller } from "react-hook-form";
-// import { Form } from "../ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FileInput } from "lucide-react";
+import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -20,6 +17,8 @@ import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "../../lib/uploadthing";
 import { usePathname, useRouter } from "next/navigation";
 import { updateUser } from "@/lib/actions/user.actions";
+import { yupResolver } from "@hookform/resolvers/yup";
+import UserValidation from "@/lib/validations/user";
 
 const AccountProfile = (props) => {
   const { user, btnTitle } = props;
@@ -43,7 +42,7 @@ const AccountProfile = (props) => {
       name: values.name,
       bio: values.bio,
       image: values.profile_photo,
-      userId: user.id,
+      userId: user.objectId,
       path: pathname,
     });
 
@@ -55,6 +54,7 @@ const AccountProfile = (props) => {
   };
 
   const form = useForm({
+    resolver: yupResolver(UserValidation),
     defaultValues: {
       profile_photo: user?.image ? user.image : "",
       name: user?.name ? user.name : "",
