@@ -25,7 +25,7 @@ export async function updateUser({ userId, name, username, bio, image, path }) {
 export async function fetchUser({ userId }) {
   try {
     connectToDB();
-    return await User.findOne({ userId });
+    return await User.findOne({ userId: userId });
     // .populate({
     //   path: "communities",
     //   model: Community,
