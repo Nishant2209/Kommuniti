@@ -42,7 +42,7 @@ const AccountProfile = (props) => {
       name: values.name,
       bio: values.bio,
       image: values.profile_photo,
-      userId: user.objectId,
+      userId: user.id,
       path: pathname,
     });
 
