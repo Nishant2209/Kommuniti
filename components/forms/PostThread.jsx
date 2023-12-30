@@ -1,7 +1,6 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-// import { useOrganization } from "@clerk/nextjs";
 import { usePathname, useRouter } from "next/navigation";
 
 import {
@@ -22,8 +21,6 @@ function PostThread({ userId }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  // const { organization } = useOrganization();
-
   const form = useForm({
     resolver: yupResolver(ThreadValidation),
     defaultValues: {
@@ -37,7 +34,6 @@ function PostThread({ userId }) {
       text: values.thread,
       author: userId,
       communityId: null,
-      // communityId: organization ? organization.id : null,
       path: pathname,
     });
 
