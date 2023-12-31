@@ -24,7 +24,7 @@ function ThreadCard({
       <div className="flex items-start justify-between">
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">
-            <Link href={`/profile/${author.id}`} className="relative h-11 w-11">
+            <Link href={`/profile/${author.userId}`} className="relative h-11 w-11">
               <Image
                 src={author.image}
                 alt="user_community_image"
@@ -37,7 +37,7 @@ function ThreadCard({
           </div>
 
           <div className="flex w-full flex-col">
-            <Link href={`/profile/${author.id}`} className="w-fit">
+            <Link href={`/profile/${author.userId}`} className="w-fit">
               <h4 className="cursor-pointer text-base-semibold text-light-1">
                 {author.name}
               </h4>
@@ -99,7 +99,7 @@ function ThreadCard({
         /> */}
       </div>
 
-      {/* {!isComment && comments.length > 0 && (
+      {!isComment && comments.length > 0 && (
         <div className="ml-1 mt-3 flex items-center gap-2">
           {comments.slice(0, 2).map((comment, index) => (
             <Image
@@ -120,7 +120,7 @@ function ThreadCard({
         </div>
       )}
 
-      {!isComment && community && (
+      {/* {!isComment && community && (
         <Link
           href={`/communities/${community.id}`}
           className="mt-5 flex items-center"
