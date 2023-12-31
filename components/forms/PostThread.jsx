@@ -14,7 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ThreadValidation } from "@/lib/validations/thread";
-import { createThread } from "@/lib/actions/thread.actions";
+import { createThreads } from "@/lib/actions/thread.actions";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 function PostThread({ userId }) {
@@ -30,7 +30,7 @@ function PostThread({ userId }) {
   });
 
   const onSubmit = async (values) => {
-    await createThread({
+    await createThreads({
       text: values.thread,
       author: userId,
       communityId: null,
