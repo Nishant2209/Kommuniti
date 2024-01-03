@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { formatDateString } from "@/lib/utils";
 import DeleteThread from "../forms/DeleteThread";
+import CopyButton from "../shared/CopyButton";
 
 function ThreadCard({
   id,
@@ -49,7 +50,7 @@ function ThreadCard({
             <p className="mt-2 text-small-regular text-light-2">{content}</p>
 
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
-              <div className="flex gap-3.5">
+              <div className="flex items-start gap-3.5">
                 <Image
                   src="/assets/heart-gray.svg"
                   alt="heart"
@@ -73,15 +74,18 @@ function ThreadCard({
                   height={24}
                   className="cursor-pointer object-contain"
                 />
-                <Image
+                {/* <Image
                   src="/assets/share.svg"
                   alt="heart"
                   width={24}
                   height={24}
                   className="cursor-pointer object-contain"
-                />
+                /> */}
+                <CopyButton id={id} />
               </div>
-
+              <p className="mt-1 text-subtle-medium text-gray-1">
+                {formatDateString(createdAt)}
+              </p>
               {isComment && comments.length > 0 && (
                 <Link href={`/thread/${id}`}>
                   <p className="mt-1 text-subtle-medium text-gray-1">
@@ -129,7 +133,6 @@ function ThreadCard({
           className="mt-5 flex items-center"
         >
           <p className="text-subtle-medium text-gray-1">
-            {formatDateString(createdAt)}
             {community && ` - ${community.name} Community`}
           </p>
 
