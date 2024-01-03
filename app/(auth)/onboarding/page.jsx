@@ -8,7 +8,6 @@ async function Page() {
   if (!user) return null; // to avoid javascript warnings
 
   const userInfo = await fetchUser({ userId: user.id });
-  console.log("info", user.id);
   if (userInfo?.onboarded) redirect("/");
 
   const userData = {
