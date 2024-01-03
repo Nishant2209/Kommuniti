@@ -13,7 +13,7 @@ export async function fetchUser(userId) {
   try {
     connectToDB();
 
-    return await User.findOne({ userId: userId }).populate({
+    return await User.findOne(userId).populate({
       path: "communities",
       model: Community,
     });
@@ -22,22 +22,14 @@ export async function fetchUser(userId) {
   }
 }
 
-export async function updateUser({ userId, bio, name, path, username, image }) {
+export async function updateUser({ userId, name, username, bio, image, path }) {
+  connectToDB();
   try {
-    connectToDB();
-
     await User.findOneAndUpdate(
-      { id: userId },
-      {
-        username: username.toLowerCase(),
-        name,
-        bio,
-        image,
-        onboarded: true,
-      },
+      { userId: userId },
+      { username: username.toLowerCase(), name, bio, image, onboarded: true },
       { upsert: true }
     );
-
     if (path === "/profile/edit") {
       revalidatePath(path);
     }
@@ -97,7 +89,7 @@ export async function fetchUsers({
 
     // Create an initial query object to filter users.
     const query = {
-      id: { $ne: userId }, // Exclude the current user from the results.
+      userId: { $ne: userId }, // Exclude the current user from the results.
     };
 
     // If the search string is not empty, add the $or operator to match either username or name fields.
