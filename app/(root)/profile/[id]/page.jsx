@@ -20,7 +20,7 @@ async function Page({ params }) {
   return (
     <section>
       <ProfileHeader
-        accountId={userInfo.id}
+        accountId={userInfo.userId}
         authUserId={user.id}
         name={userInfo.name}
         username={userInfo.username}
@@ -56,10 +56,9 @@ async function Page({ params }) {
               value={tab.value}
               className="w-full text-light-1"
             >
-              {/* @ts-ignore */}
               <ThreadsTab
                 currentUserId={user.id}
-                accountId={userInfo.id}
+                accountId={userInfo.userId}
                 accountType="User"
               />
             </TabsContent>
