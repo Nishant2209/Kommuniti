@@ -25,7 +25,7 @@ const UserCard = ({ id, name, username, imgUrl, personType }) => {
 
       <Button
         className="user-card_btn"
-        onClick={() => router.push(`profile/${id}`)}
+        onClick={() => router.push(`/profile/${id}`)}
       >
         View
       </Button>
