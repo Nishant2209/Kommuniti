@@ -29,11 +29,17 @@ async function ThreadsTab({ currentUserId, accountId, accountType }) {
           content={thread.text}
           author={
             accountType === "User"
-              ? { name: result.name, image: result.image, id: result.id }
+              ? {
+                  name: result.name,
+                  image: result.image,
+                  id: result.id,
+                  userId: result.userId,
+                }
               : {
                   name: thread.author.name,
                   image: thread.author.image,
                   id: thread.author.id,
+                  userId: thread.author.userId,
                 }
           }
           community={
