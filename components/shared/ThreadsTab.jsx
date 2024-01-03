@@ -1,12 +1,18 @@
 import { redirect } from "next/navigation";
 
-// import { fetchCommunityPosts } from "@/lib/actions/community.actions";
+import { fetchCommunityThreads } from "@/lib/actions/community.actions";
 import { fetchUserThreads } from "@/lib/actions/user.actions";
+
 import ThreadCard from "../card/ThreadCard";
 
-
 async function ThreadsTab({ currentUserId, accountId, accountType }) {
-  let result = await fetchUserThreads(accountId);
+  let result;
+
+  if (accountType === "Community") {
+    result = await fetchCommunityThreads(accountId);
+  } else {
+    result = await fetchUserThreads(accountId);
+  }
 
   if (!result) {
     redirect("/");
@@ -14,7 +20,7 @@ async function ThreadsTab({ currentUserId, accountId, accountType }) {
 
   return (
     <section className="mt-9 flex flex-col gap-10">
-      {result?.threads?.map((thread) => (
+      {result.threads.map((thread) => (
         <ThreadCard
           key={thread._id}
           id={thread._id}
@@ -30,11 +36,11 @@ async function ThreadsTab({ currentUserId, accountId, accountType }) {
                   id: thread.author.id,
                 }
           }
-          //   community={
-          //     accountType === "Community"
-          //       ? { name: result.name, id: result.id, image: result.image }
-          //       : thread.community
-          //   }
+          community={
+            accountType === "Community"
+              ? { name: result.name, id: result.id, image: result.image }
+              : thread.community
+          }
           createdAt={thread.createdAt}
           comments={thread.children}
         />
