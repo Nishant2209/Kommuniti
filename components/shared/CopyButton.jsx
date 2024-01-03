@@ -3,10 +3,18 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const CopyButton = ({ id }) => {
+const CopyButton = ({ id, type }) => {
   const [isCopied, setIsCopied] = useState(false);
   const handleCopy = () => {
-    navigator.clipboard.writeText(`https://kommuniti.vercel.app/thread/${id}`);
+    if (type === "Thread") {
+      navigator.clipboard.writeText(
+        `https://kommuniti.vercel.app/thread/${id}`
+      );
+    } else if (type === "User") {
+      navigator.clipboard.writeText(
+        `https://kommuniti.vercel.app/profile/${id}`
+      );
+    }
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
   };
@@ -21,7 +29,7 @@ const CopyButton = ({ id }) => {
         onClick={handleCopy}
       />
       <p className="text-tiny-medium text-gray-1">
-        {isCopied ? "Copied" : null}
+        {isCopied && type === "Thread" && "Copied"}
       </p>
     </div>
   );
