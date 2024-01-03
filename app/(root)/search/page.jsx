@@ -34,7 +34,7 @@ async function Page({ searchParams }) {
             {result.users.map((person) => (
               <UserCard
                 key={person._id}
-                id={person.id}
+                id={person.userId}
                 name={person.name}
                 username={person.username}
                 imgUrl={person.image}

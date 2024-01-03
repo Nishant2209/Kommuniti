@@ -27,7 +27,7 @@ async function RightSidebar() {
         <div className="mt-7 flex w-[350px] flex-col gap-9">
           {suggestedCommunities.communities.length > 0 ? (
             <>
-              {suggestedCOmmunities.communities.map((community) => (
+              {suggestedCommunities.communities.map((community) => (
                 <UserCard
                   key={community._id}
                   id={community.id}
@@ -54,7 +54,7 @@ async function RightSidebar() {
               {similarMinds?.users?.map((person) => (
                 <UserCard
                   key={person._id}
-                  id={person.id}
+                  id={person.userId}
                   name={person.name}
                   username={person.username}
                   imgUrl={person.image}
