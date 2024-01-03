@@ -16,10 +16,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { ThreadValidation } from "@/lib/validations/thread";
 import { createThreads } from "@/lib/actions/thread.actions";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useOrganization } from "@clerk/nextjs";
 
 function PostThread({ userId }) {
   const router = useRouter();
   const pathname = usePathname();
+  const { organization } = useOrganization();
 
   const form = useForm({
     resolver: yupResolver(ThreadValidation),
@@ -33,7 +35,7 @@ function PostThread({ userId }) {
     await createThreads({
       text: values.thread,
       author: userId,
-      communityId: null,
+      communityId: organization ? organization?.id : null,
       path: pathname,
     });
 
