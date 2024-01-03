@@ -30,17 +30,17 @@ async function Home({ searchParams }) {
           <p className="no-result">No threads found</p>
         ) : (
           <>
-            {result?.threads?.map((post) => (
+            {result?.threads?.map((thread) => (
               <ThreadCard
-                key={post._id}
-                id={post._id}
+                key={thread._id}
+                id={thread._id}
                 currentUserId={user.id}
-                parentId={post.parentId}
-                content={post.text}
-                author={post.author}
-                community={post.community}
-                createdAt={post.createdAt}
-                comments={post.children}
+                parentId={thread.parentId}
+                content={thread.text}
+                author={thread.author}
+                community={thread.community}
+                createdAt={thread.createdAt}
+                comments={thread.children}
               />
             ))}
           </>
