@@ -81,7 +81,7 @@ function ThreadCard({
                   height={24}
                   className="cursor-pointer object-contain"
                 /> */}
-                <CopyButton id={id} />
+                <CopyButton id={id} type="Thread" />
               </div>
               <p className="mt-1 text-subtle-medium text-gray-1">
                 {formatDateString(createdAt)}
