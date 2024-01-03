@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs";
 
 import { communityTabs } from "@/constants";
 
-import UserCard from "@/components/cards/UserCard";
+import UserCard from "@/components/card/UserCard";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 import ProfileHeader from "@/components/shared/ProfileHeader";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
