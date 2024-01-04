@@ -20,9 +20,7 @@
 1. ⚙️ [Tech Stack](#tech-stack)
 2. 🔋 [Features](#features)
 3. 🤸 [Quick Start](#quick-start)
-4. 🕸️ [Snippets](#snippets)
 5. 🔗 [Links](#links)
-6. 🚀 [More](#more)
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
@@ -125,3 +123,5 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
 
+## <a name="link">🔋 Link</a>
+Live Link:- [Kommuniti](http://kommuniti.vercel.app) in your browser to view the project.
